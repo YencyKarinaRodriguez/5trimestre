@@ -21,11 +21,14 @@
 
     var_dump($edad);
     echo gettype($_apellido);
-    define ('Rol', 'Instructor');
+    define ('Rol', 'Aprendiz');
     echo Rol;
     //otra manera de crear una constante
     const gravedad=9.8;
     echo(gravedad);
+
+    $dia = date ("d");
+    echo("El dia hoy es: ".$dia);
 
 include 'includes/footer.php';
 ?>
