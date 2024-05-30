@@ -1,42 +1,38 @@
 <?php
-function fibonacci_series($n) {
-    if ($n <= 0) {
-        return [];
-    } elseif ($n == 1) {
-        return [0];
-    } elseif ($n == 2) {
-        return [0, 1];
-    }
+    // Función para calcular la serie de Fibonacci hasta un número dado
+    function fibonacci($numero) {
+        $serie = [];
+        $a = 0;
+        $b = 1;
 
-    $series = [0, 1];
-    while (true) {
-        $next_value = end($series) + prev($series);
-        if ($next_value >= $n) {
-            break;
+        // Agregar los primeros dos números de la serie
+        $serie[] = $a;
+        $serie[] = $b;
+
+        // Calcular la serie de Fibonacci hasta el número dado
+        while (($c = $a + $b) <= $numero) {
+            $serie[] = $c;
+            $a = $b;
+            $b = $c;
         }
-        $series[] = $next_value;
-        next($series); // Reset the internal pointer to the end of the array
+
+        return $serie;
     }
 
-    return $series;
-}
+    // Procesar el formulario y calcular la serie de Fibonacci
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $numero = $_POST["numero"];
 
-// Solicitar al usuario que ingrese un número
-echo "Ingrese un número: ";
-$handle = fopen("php://stdin", "r");
-$user_input = trim(fgets($handle));
+        // Verificar si se ingresó un número válido
+        if (is_numeric($numero) && $numero >= 0) {
+            // Calcular la serie de Fibonacci
+            $serie_fibonacci = fibonacci($numero);
 
-// Verificar que la entrada sea un número
-if (!is_numeric($user_input)) {
-    echo "Por favor, ingrese un número válido.\n";
-    exit(1);
-}
-
-$user_input = (int)$user_input;
-
-// Calcular la serie de Fibonacci hasta el número dado
-$fibonacci_result = fibonacci_series($user_input);
-
-// Imprimir el resultado
-echo "Serie de Fibonacci hasta $user_input es: " . implode(", ", $fibonacci_result) . "\n";
+            // Imprimir la serie de Fibonacci
+            echo "Serie de Fibonacci hasta el número $numero: ";
+            echo implode(", ", $serie_fibonacci);
+        } else {
+            echo "Por favor, ingresa un número válido.";
+        }
+    }
 ?>
