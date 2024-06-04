@@ -1,30 +1,34 @@
 <?php
-function eliminar_duplicados_multidimensional($array) {
-    // Serializar cada sub-arreglo para permitir la comparación de igualdad
-    $serializado_array = array_map('serialize', $array);
 
-    // Eliminar duplicados utilizando array_unique
-    $unico_array_serializado = array_unique($serializado_array);
-
-    // Deserializar los sub-arreglos para volver a la estructura original
-    $resultado = array_map('unserialize', $unico_array_serializado);
-
-    return $resultado;
+// Función para eliminar elementos duplicados de un arreglo multidimensional
+function eliminarDuplicadosMultidimensional($array) {
+    // Creamos un arreglo temporal para almacenar los elementos únicos
+    $uniqueArray = array();
+    
+    // Recorremos el arreglo multidimensional
+    foreach ($array as $subArray) {
+        // Convertimos el subarreglo en una cadena para poder comparar fácilmente
+        $serialized = serialize($subArray);
+        // Si el subarreglo no existe en el arreglo temporal, lo agregamos
+        if (!in_array($serialized, $uniqueArray)) {
+            $uniqueArray[] = $serialized;
+        }
+    }
+    
+    // Convertimos de nuevo las cadenas serializadas a arreglos
+    $result = array_map('unserialize', $uniqueArray);
+    
+    return $result;
 }
 
-// Ejemplo de arreglo multidimensional
-$arreglo_multidimensional = [
-    ["nombre" => "Juan", "edad" => 25],
-    ["nombre" => "Ana", "edad" => 30],
-    ["nombre" => "Juan", "edad" => 25],
-    ["nombre" => "Luis", "edad" => 35],
-    ["nombre" => "Ana", "edad" => 30]
-];
+// Ejemplo de uso
+$miArregloMultidimensional = array(
+    array('a', 'b', 'c'),
+    array('d', 'e', 'f'),
+    array('a', 'b', 'c'), // Duplicado
+    array('g', 'h', 'i'),
+    array('d', 'e', 'f')  // Duplicado
+);
 
-// Eliminar duplicados del arreglo multidimensional
-$arreglo_sin_duplicados = eliminar_duplicados_multidimensional($arreglo_multidimensional);
-
-// Imprimir el resultado
-echo "Arreglo sin duplicados:\n";
-print_r($arreglo_sin_duplicados);
-?>
+$resultado = eliminarDuplicadosMultidimensional($miArregloMultidimensional);
+print_r($resultado);

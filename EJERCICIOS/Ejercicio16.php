@@ -1,12 +1,12 @@
 <?php
 function distancia_levenshtein($cadena1, $cadena2) {
-    $len1 = strlen($cadena1);
-    $len2 = strlen($cadena2);
+$len1 = strlen($cadena1);
+$len2 = strlen($cadena2);
 
-    // Crear una matriz
-    $matriz = [];
+// Crear una matriz
+$matriz = [];
 
-    // Inicializar la primera fila y columna
+// Inicializar la primera fila y columna
     for ($i = 0; $i <= $len1; $i++) {
         $matriz[$i][0] = $i;
     }
@@ -36,12 +36,12 @@ $cadena1 = "kitten";
 $cadena2 = "sitting";
 $distancia = distancia_levenshtein($cadena1, $cadena2);
 
-echo "La distancia de Levenshtein entre '$cadena1' y '$cadena2' es: $distancia\n";
+echo "<li>La distancia de Levenshtein entre '$cadena1' y '$cadena2' es: $distancia</li>\n";
 
 // Más ejemplos
 $cadena3 = "flaw";
 $cadena4 = "lawn";
 $distancia2 = distancia_levenshtein($cadena3, $cadena4);
 
-echo "La distancia de Levenshtein entre '$cadena3' y '$cadena4' es: $distancia2\n";
+echo "<li>La distancia de Levenshtein entre '$cadena3' y '$cadena4' es: $distancia2</li>\n";
 ?>

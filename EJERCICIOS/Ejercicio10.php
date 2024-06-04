@@ -4,24 +4,21 @@ function es_correo_valido($correo) {
     return filter_var($correo, FILTER_VALIDATE_EMAIL) !== false;
 }
 
-// Ejemplos de correos electrónicos para probar
-$correos = [
-    "usuario@ejemplo.com",
-    "usuario.ejemplo@dominio.com",
-    "usuario@dominio",
-    "usuario@dominio..com",
-    "usuario@.dominio.com",
-    "usuario@dominio.c",
-    "usuario@dominio.com",
-    "usuario@dominio.museum"
-];
-
-// Probar la función con diferentes correos electrónicos
-foreach ($correos as $correo) {
-    if (es_correo_valido($correo)) {
-        echo "El correo '$correo' es válido.\n";
+// Procesar el formulario
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST["correo"])) {
+        $user_input_correo = trim($_POST["correo"]);
+        
+        // Validar la dirección de correo electrónico ingresada
+        if (es_correo_valido($user_input_correo)) {
+            echo "<p>La dirección de correo electrónico '$user_input_correo' es válida.</p>";
+        } else {
+            echo "<p>La dirección de correo electrónico '$user_input_correo' no es válida.</p>";
+        }
     } else {
-        echo "El correo '$correo' no es válido.\n";
+        echo "<p>No se recibió ningún dato del formulario.</p>";
     }
+} else {
+    echo "<p>No se ha enviado ningún dato.</p>";
 }
 ?>

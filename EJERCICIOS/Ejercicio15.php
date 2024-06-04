@@ -1,4 +1,5 @@
 <?php
+// Definir la función para calcular la suma de los dígitos
 function suma_digitos($numero) {
     // Convertir el número a cadena para iterar sobre sus dígitos
     $cadena_numero = strval($numero);
@@ -13,17 +14,16 @@ function suma_digitos($numero) {
     return $suma;
 }
 
-// Ejemplos de uso de la función
-$numero1 = 1234;
-$numero2 = 56789;
-$numero3 = 1023;
+// Verificar si se ha enviado el formulario
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+// Obtener el número ingresado por el usuario
+$numero = $_POST["numero"];
 
-$suma1 = suma_digitos($numero1);
-$suma2 = suma_digitos($numero2);
-$suma3 = suma_digitos($numero3);
 
-// Imprimir los resultados
-echo "La suma de los dígitos de $numero1 es: $suma1\n";
-echo "La suma de los dígitos de $numero2 es: $suma2\n";
-echo "La suma de los dígitos de $numero3 es: $suma3\n";
+// Calcular la suma de los dígitos del número ingresado
+$suma_digitos = suma_digitos($numero);
+
+// Mostrar el resultado
+echo "<p>La suma de los dígitos de $numero es: $suma_digitos</p>";
+}
 ?>

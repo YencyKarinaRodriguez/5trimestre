@@ -23,11 +23,21 @@ function primos_en_rango($min, $max) {
     return $primos;
 }
 
-// Ejemplos de uso de la función
-$min = 10;
-$max = 50;
-$primos = primos_en_rango($min, $max);
+// Procesar el formulario
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST["min"]) && isset($_POST["max"])) {
+        $user_input_min = intval($_POST["min"]);
+        $user_input_max = intval($_POST["max"]);
 
-// Imprimir los resultados
-echo "Números primos entre $min y $max: " . implode(", ", $primos) . "\n";
+        // Encontrar los números primos dentro del rango
+        $primos = primos_en_rango($user_input_min, $user_input_max);
+
+        // Imprimir los resultados
+        echo "<p>Números primos entre $user_input_min y $user_input_max: " . implode(", ", $primos) . "</p>";
+    } else {
+        echo "<p>No se recibieron todos los datos del formulario.</p>";
+    }
+} else {
+    echo "<p>No se ha enviado ningún dato.</p>";
+}
 ?>
