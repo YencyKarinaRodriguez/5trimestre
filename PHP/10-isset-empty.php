@@ -22,3 +22,4 @@ echo "<br>";
 var_dump(isset($cliente['nombre']));
 
 include 'includes/footer.php';
+?>

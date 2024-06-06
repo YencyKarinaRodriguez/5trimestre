@@ -1,7 +1,7 @@
 <?php include 'includes/header.php';
 
-$varios = array ('Lunes', 'Martes', 'Miercoles', 3, 7, true);
-$animales = array ('Cat'=> 'Gato', 'Dog'=>'Perro','Bird'=>'Pajaro');
+$varios = array('Lunes', 'Martes', 'Miercoles', 3, 7, true);
+$animales =array('Cat'=>'Gato','Dog'=>'Perro','Bird'=>'Pajaro');
 var_dump($varios);
 echo "<br>";
 echo($varios['3']);
@@ -11,34 +11,40 @@ var_dump($animales);
 echo "<br>";
 echo($animales['Cat']);
 
-//array multidimensionales
-$amigos=array(array('Jose', '21', 'Aprendiz', '24/07/2000', 3245678964),
-                array('Diego', '24', 'Ingeniero', '02/09/2002', 8765438906),
-                array('Luisa', '34', 'Profesor', '07/09/1999'. 9865427894),
-                array('Tatiana', 'Calle 143', '0+', array(3456890234, 8753013478))                
+//Array multidimensionales
+$amigos=array(array('Maria', '18', 'Aprendiz', '25/04/2006', 3144539901),
+                array('Pedro', '38', 'Ingeniero Industrial', '09/09/1987', 3035684281),
+                array('Mabel', '55', 'Profesora', '02/07/1967', 3105862254),
+                array('Luis', 'Cra 1 Nro 98-90 SUr', 'O+', array(3073901563, 3218906651))
 );
 echo "<br>";
-echo ('La profesion de '.$amigos[0][0]. 'es: '. $amigos[0][2]);
+echo ('La Profesion de '.$amigos[0][0]. ' es: '. $amigos[0][2]);
 
 echo "<br>";
-echo ('El 1 nunmero de telefono de '.$amigos[3][0]. 'es: '. $amigos[3][3][0]);
+echo ('El 1 número de telefono de '.$amigos[3][0]. ' es: '. $amigos[3][3][0]);
 
 echo "<br>";
-echo ('La fecha de nacimiento de '.$amigos[2][0]. 'es: '. $amigos[2][3]);
+echo ('La Fecha de nacimiento de '.$amigos[2][0]. ' es: '. $amigos[2][3]);
 echo "<br>";
 
 $cant = count($amigos);
-echo ('Total de amigos es: '.$cant);
+echo ('Total de amigos es: '. $cant);
 echo "<br>";
 
-echo ('Nombre del ultimo es: '.$amigos[$cant-1][0]);
+echo ('Nombre del ultimo amigo es: '. $amigos[$cant-1][0]);
+echo "<br>";
 
-$cadena="Servicio nacional de aprendizaje sena";
-$caracteres= str_split($cadena);
+// Ejercicio arreglos php
+//utilizando arreglos almacene una cadena de caracteres en un arreglo caracter por caracter e imprimir dicho arreglo acompañado de la cadena de caracteres
 
-echo "cadena de caracteres: $cadena\n";
-echo "arreglo de caracteres:\n";
+$cadena = "Servicio Nacional de Aprendizaje SENA";
+$caracteres = str_split($cadena);
+echo "Cadena de caracteres: $cadena ";
+echo "<br>";
+echo "Arreglo de caracteres: ";
 print_r($caracteres);
+
+
 
 include 'includes/footer.php';
 ?>

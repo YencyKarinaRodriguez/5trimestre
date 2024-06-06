@@ -1,4 +1,4 @@
-<?php include 'includes/encabezado.php';
+<?php include 'includes/header.php';
 
 $autenticado = true;
 $admin = false;
